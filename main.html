@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rock-Paper-Scissors Fun!</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="header-footer">
+    <header>
+      <h1>Rock-Paper-Scissors Fun!</h1>
+      <nav>
+        <ul>
+          <li><a href="https://trypap.com" target="_blank">Home</a></li>
+          <li><a href="https://www.google.com" target="_blank">Search</a></li>
+          <li><a href="https://www.wikipedia.org" target="_blank">Info</a></li>
+        </ul>
+      </nav>
+    </header>
+  </div>
+
+  <div class="container">
+    <div class="main-content">
+      <h2>Play the Game</h2>
+      <form id="rpsForm" action="#" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required placeholder="Enter your name" />
+        <br /><br />
+        <label for="choice">Choose your move:</label>
+        <select id="choice" name="choice">
+          <option value="rock">Rock</option>
+          <option value="paper">Paper</option>
+          <option value="scissors">Scissors</option>
+        </select>
+        <br /><br />
+        <input type="submit" value="Play" />
+      </form>
+    </div>
+
+    <aside class="sidebar">
+      <h2>How to Play</h2>
+      <ol>
+        <li>Rock beats Scissors.</li>
+        <li>Scissors beats Paper.</li>
+        <li>Paper beats Rock.</li>
+        <li>If both choose the same, it's a tie!</li>
+      </ol>
+    </aside>
+  </div>
+
+  <div class="header-footer">
+    <footer>
+      <p>&copy; 2025 Rock-Paper-Scissors Fun!</p>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('rpsForm').addEventListener('submit', function(event) {
+      event.preventDefault(); 
+      
+      var name = document.getElementById('name').value.trim();
+      var userChoice = document.getElementById('choice').value;
+      
+      if (!name) {
+        alert("Please enter your name!");
+        return;
+      }
+      
+      var choices = ['rock', 'paper', 'scissors'];
+      var computerChoice = choices[Math.floor(Math.random() * choices.length)];
+      
+      var message = "";
+      if (userChoice === computerChoice) {
+        message = "It's a tie!";
+      } else if (
+        (userChoice === 'rock' && computerChoice === 'scissors') ||
+        (userChoice === 'paper' && computerChoice === 'rock') ||
+        (userChoice === 'scissors' && computerChoice === 'paper')
+      ) {
+        message = "Congratulations " + name + ", you won!";
+      } else {
+        message = "Sorry " + name + ", you lost!";
+      }
+
+      alert(message + "\nYou chose " + userChoice + " and the computer chose " + computerChoice + ".");
+    });
+  </script>
+</body>
+</html>
